@@ -84,6 +84,11 @@
         align-items: center;
         justify-content: center;
       }
+      
+      .nav-mark.active {
+        background: white;
+        color: #12201B;
+      }
   
       .nav-links {
         position: fixed;
@@ -124,6 +129,10 @@
         background: white;
         transition: width 0.3s ease;
       }
+
+      .nav-links a.active::after { width: 100%; }
+
+      .nav-links a.active { color: white; }
   
       @media (hover:hover) and (pointer:fine) {
         .nav-links a:hover::after { width:100%; }
@@ -636,7 +645,7 @@
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
     </nav>
@@ -672,7 +681,7 @@
         </a>
 
         <a href="#contact" class="hero-link">
-          Download CV
+          View CVs
         </a>
 
       </div>
@@ -684,7 +693,7 @@
 
           <span class="nova-text">
             <span class="nova-title">Talk to NOVA</span>
-            <span class="nova-prompt" id="novaPrompt">Ask me who created me...</span>
+            <span class="nova-prompt" id="novaPrompt">Ask NOVA about Kelvin...</span>
           </span>
         </button>
 
@@ -701,11 +710,11 @@
         <p>
           I am a customer service and administration professional with over 11 years of experience supporting customers 
           across contact centre, technical support, and administrative environments in both the UK and South Africa. 
-          Alongside my customer service career, I have developed skills in front-end web development, creating 
-          responsive, user-friendly websites for small businesses and service providers. I enjoy combining strong 
+          Alongside my customer service career, I have developed strong front-end web development skills, creating 
+          responsive, accessible websites for small businesses and service providers. I enjoy combining strong 
           communication skills with technology to help businesses improve their online presence and customer experience. 
           Currently seeking remote Customer Service, Technical Support or Junior Front-End Web Developer 
-          opportunities in the UK
+          opportunities in the UK.
         </p>
       </div>
     </section>
@@ -718,41 +727,41 @@
         
         <div class="projects-grid">
 
-          <a href="#" class="project-card">
+          <a href="https://real-estate-demo.nazaritedigitalsolutions.workers.dev/" class="project-card">
 
             <picture>
               <source srcset="project-1.webp" type="image/webp">
-              <img src="project-1.jpg" alt="Project 1 website preview" width="1348" height="597">
+              <img src="project-1.jpg" alt="Project 1 website preview" loading="lazy" decoding="async" width="1348" height="597">
             </picture>
 
             <div class="project-info">
-              <h3>Project 1</h3>
+              <h3>Real Estate Demo</h3>
             </div>
 
           </a>
 
-          <a href="#" class="project-card">
+          <a href="https://xyz-springs-demo.vercel.app/" class="project-card">
 
             <picture>
               <source srcset="project-2.webp" type="image/webp">
-              <img src="project-2.jpg" alt="Project 2 website preview" width="1350" height="609">
+              <img src="project-2.jpg" alt="Project 2 website preview" loading="lazy" decoding="async" width="1350" height="609">
             </picture>
 
             <div class="project-info">
-              <h3>Project 2</h3>
+              <h3>XYZ Springs Demo</h3>
             </div>
 
           </a>
 
-          <a href="#" class="project-card">
+          <a href="https://www.heartfulhound.co.za/" class="project-card">
 
             <picture>
               <source srcset="project-3.webp" type="image/webp">
-              <img src="project-3.jpg" alt="Project 3 website preview" width="1348" height="644">
+              <img src="project-3.jpg" alt="Project 3 website preview" loading="lazy" decoding="async" width="1348" height="644">
             </picture>
 
             <div class="project-info">
-              <h3>Project 3</h3>
+              <h3>Heartful Hound</h3>
             </div>
 
           </a>
@@ -832,6 +841,7 @@
           <div class="skill">CSS</div>
           <div class="skill">JavaScript</div>
           <div class="skill">Responsive Design</div>
+          <div class="skill">Git</div>
           <div class="skill">GitHub</div>
           <div class="skill">Cloudflare</div>
           <div class="skill">Vercel</div>
@@ -844,7 +854,7 @@
     <section class="section section--light" id="contact">
       <div class="section-inner">
 
-        <h2>Let's Connect</h2>
+        <h2>Contact</h2>
 
         <p class="location">📍 Durban, South Africa</p>
         <p class="email">
@@ -890,7 +900,8 @@
 <!-- ─────────────────────────────────────────────────── FOOTER ──────────────────────────────────────────────────── -->
     
     <footer class="footer">
-      <p>&copy; <span id="year"></span> Kelvin Bradshaw. All rights reserved.</p>
+      <p>&copy; <span id="year"></span> Kelvin Bradshaw.</p>
+      <p>Designed & developed by Kelvin Bradshaw.</p>
     </footer>
     
 <!-- ─────────────────────────────────────────────────── SCRIPT ──────────────────────────────────────────────────── -->
@@ -908,19 +919,52 @@
       const navToggle = document.getElementById('navToggle');
       const navLinks = document.getElementById('navLinks');
       navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('is-open');
+        const isOpen = navToggle.classList.toggle('is-open');
         navLinks.classList.toggle('is-open');
+        navToggle.setAttribute('aria-expanded', isOpen);
       });
       navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
           navToggle.classList.remove('is-open');
           navLinks.classList.remove('is-open');
+          navToggle.setAttribute('aria-expanded', 'false');
         });
       });
 
       // FOOTER YEAR
       
       document.getElementById('year').textContent = new Date().getFullYear();
+      
+      // ACTIVE NAVIGATION
+
+      const sections = document.querySelectorAll("section[id]");
+      const navItems = document.querySelectorAll(".nav-links a");
+      const navMark = document.querySelector(".nav-mark");
+
+      window.addEventListener("scroll", () => {
+        let current = "hero";
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          const sectionHeight = section.offsetHeight;
+
+          if (
+            window.scrollY >= sectionTop &&
+            window.scrollY < sectionTop + sectionHeight
+          ) {
+            current = section.id;
+          }
+        });
+
+        navItems.forEach(link => {
+          link.classList.toggle(
+            "active",
+            link.getAttribute("href") === "#" + current
+          );
+        });
+
+        navMark.classList.toggle("active", current === "hero");
+      });
       
       // NOVA
       
@@ -1041,64 +1085,45 @@
       };
       }
       
-      // TEXT TO SPEECH
+      // MP3 PLAYER
 
-      let availableVoices = [];
+      const novaAudio = new Audio();
 
-      // LOAD AVAILABLE VOICES
+      function speak(file) {
+
+        novaAudio.pause();
+        novaAudio.currentTime = 0;
+
+        novaAudio.src = `audio/${file}`;
+        novaAudio.play();
+      }
       
-      function loadVoices() {
-        availableVoices = speechSynthesis.getVoices();
-      }
+      // WELCOME MESSAGE
 
-      loadVoices();
+      window.addEventListener("load", () => {
 
-      if (speechSynthesis.onvoiceschanged !== undefined) {
-        speechSynthesis.onvoiceschanged = loadVoices;
-      }
+        setTimeout(() => {
 
-      function speak(text) {
+          if (novaAudio.paused) {
+            speak("hello.mp3");
+          }
 
-      // STOP ANY SPEECH ALREADY PLAYING
-      
-      speechSynthesis.cancel();
+        }, 1800);
 
-      const utterance = new SpeechSynthesisUtterance(text);
-
-        // BRITISH FEMALE VOICE
-      
-        const preferredVoice =
-        availableVoices.find(v => v.name.includes("Libby")) ||
-        availableVoices.find(v => v.name.includes("Hazel")) ||
-        availableVoices.find(v => v.name.includes("Sonia")) ||
-        availableVoices.find(v => v.name.includes("Google UK English Female")) ||
-        availableVoices.find(v => v.lang === "en-GB") ||
-        availableVoices.find(v => v.lang.startsWith("en"));
-
-      if (preferredVoice) {
-        utterance.voice = preferredVoice;
-      }
-
-      utterance.lang = "en-GB";
-      utterance.rate = 1;
-      utterance.pitch = 1;
-      utterance.volume = 1;
-
-      speechSynthesis.speak(utterance);
-      }
+      });
  
       // NOVA ANSWERS
 
       const novaAnswers = {
 
         "who created you":
-          "I was created by Kelvin Bradshaw as part of his interactive portfolio. I demonstrate front-end development, JavaScript, voice recognition, speech synthesis and AI integration.",
+          "I was created by Kelvin Bradshaw as part of his personal portfolio. Kelvin developed me using HTML, CSS and JavaScript, integrating voice recognition with custom-recorded responses to showcase his front-end development skills in a practical and interactive way. Feel free to ask me about his projects, qualifications or experience.",
 
         "tell me about kelvin":
           "Kelvin Bradshaw is a Customer Service Professional with over eleven years of experience supporting customers in the United Kingdom and South Africa. Alongside his customer service career, he designs and develops modern, responsive websites using HTML, CSS and JavaScript.",
 
         "what experience does kelvin have":
-          "Kelvin has over eleven years of experience in customer service, technical support, administration and CRM systems. He has worked in contact centres, administrative roles and web development projects.",
+          "Kelvin has more than eleven years of professional experience across customer service, technical support and administration in both the United Kingdom and South Africa. He has worked in high-volume contact centres, managed customer enquiries using CRM systems, and more recently expanded into front-end web development, creating responsive websites with HTML, CSS and JavaScript.",
 
         "what skills does kelvin have":
           "Kelvin's skills include Customer Service, Technical Support, Administration, HTML, CSS, JavaScript, Responsive Web Design, GitHub, Cloudflare and Vercel.",
@@ -1119,16 +1144,28 @@
           "Certainly. Here's Kelvin's skills section.",
 
         "how can i contact kelvin":
-          "You can contact Kelvin using the contact section below or connect with him on LinkedIn.",
+          "You can contact Kelvin by email using the contact section below. You can also connect with him on LinkedIn, explore his GitHub projects, or download his Customer Service and Front-End Developer CVs. Thank you for visiting his portfolio.",
 
         "where is kelvin located":
           "Kelvin is currently based in Durban, South Africa, and is seeking remote opportunities in the United Kingdom.",
 
         "what are you":
-          "I'm NOVA, Kelvin's voice assistant. You can ask me about Kelvin, his projects, qualifications, skills or contact information."
+          "Hello, I'm NOVA, Kelvin Bradshaw's interactive portfolio assistant. I'm here to answer questions about Kelvin's experience, skills, qualifications, projects and contact information. Simply ask me a question, and I'll help you learn more about his background and the work he has created."
       };
       
       // ANSWER QUESTIONS
+      
+      const navigationWords = [
+        "show",
+        "take",
+        "go",
+        "open",
+        "navigate",
+        "see",
+        "find",
+        "view",
+        "visit"
+      ];
 
       function answerQuestion(question) {
 
@@ -1139,9 +1176,25 @@
         if (
           question.includes("about kelvin") ||
           question.includes("who is kelvin") ||
-          question.includes("tell me about kelvin")
+          question.includes("tell me about kelvin") ||
+          question.includes("tell me about yourself") ||
+          question.includes("introduce yourself") ||
+          question.includes("who are you") ||
+          question.includes("what do you do") ||
+          question.includes("what does kelvin do") ||
+          question.includes("what is kelvin's background") ||
+          question.includes("what's kelvin's background") ||
+          question.includes("give me an overview") ||
+          question.includes("tell me about your background") ||
+          question.includes("can you tell me about kelvin") ||
+          question.includes("who is kelvin bradshaw")
         ) {
-          speak(novaAnswers["tell me about kelvin"]);
+          speak("about-kelvin.mp3");
+          
+          document.getElementById("about").scrollIntoView({
+            behavior: "smooth"
+          });
+          
           return;
         }
 
@@ -1150,9 +1203,15 @@
         if (
           question.includes("who created you") ||
           question.includes("who made you") ||
-          question.includes("who built you")
+          question.includes("who built you") ||
+          question.includes("who developed you") ||
+          question.includes("who designed you") ||
+          question.includes("who programmed you") ||
+          question.includes("who wrote you") ||
+          question.includes("who invented you")
         ) {
-          speak(novaAnswers["who created you"]);
+          speak("created.mp3");
+          
           return;
         }
 
@@ -1161,9 +1220,21 @@
         if (
           question.includes("experience") ||
           question.includes("work experience") ||
-          question.includes("career")
+          question.includes("career") ||
+          question.includes("employment") ||
+          question.includes("background") ||
+          question.includes("professional background") ||
+          question.includes("tell me about your experience") ||
+          question.includes("tell me about kelvin's experience") ||
+          question.includes("what experience does kelvin have") ||
+          question.includes("how much experience") ||
+          question.includes("how many years") ||
+          question.includes("what jobs has kelvin had") ||
+          question.includes("previous jobs") ||
+          question.includes("work history")
         ) {
-          speak(novaAnswers["what experience does kelvin have"]);
+          speak("experience.mp3");
+          
           return;
         }
 
@@ -1171,13 +1242,25 @@
         
         if (
           question.includes("skills") ||
-          question.includes("skill")
+          question.includes("skill") ||
+          question.includes("what can you do") ||
+          question.includes("what can kelvin do") ||
+          question.includes("what are kelvin's skills") ||
+          question.includes("what skills does kelvin have") ||
+          question.includes("what is kelvin good at") ||
+          question.includes("what are your skills") ||
+          question.includes("what do you specialise in") ||
+          question.includes("what do you specialize in") ||
+          question.includes("specialise") ||
+          question.includes("specialize") ||
+          question.includes("strengths") ||
+          question.includes("core skills")
         ) {
-          speak(novaAnswers["what skills does kelvin have"]);
+          speak("skills.mp3");
 
           document.getElementById("skills").scrollIntoView({
             behavior: "smooth"
-        });
+          });
 
           return;
         }
@@ -1187,50 +1270,119 @@
         if (
           question.includes("technology") ||
           question.includes("technologies") ||
+          question.includes("tech stack") ||
+          question.includes("stack") ||
+          question.includes("programming languages") ||
+          question.includes("languages") ||
+          question.includes("tools") ||
+          question.includes("software") ||
+          question.includes("what technologies does kelvin use") ||
+          question.includes("what technology does kelvin use") ||
+          question.includes("what tools does kelvin use") ||
+          question.includes("what software does kelvin use") ||
+          question.includes("what programming languages") ||
+          question.includes("what coding languages") ||
+          question.includes("what languages do you know") ||
+          question.includes("what do you code in") ||
+          question.includes("what do you develop with") ||
+          question.includes("what framework") ||
+          question.includes("frameworks") ||
           question.includes("html") ||
           question.includes("css") ||
-          question.includes("javascript")
+          question.includes("javascript") ||
+          question.includes("github") ||
+          question.includes("cloudflare") ||
+          question.includes("vercel")
         ) {
-          speak(novaAnswers["what technologies does kelvin use"]);
+          speak("technologies.mp3");
 
           document.getElementById("skills").scrollIntoView({
             behavior: "smooth"
-        });
+          });
 
-        return;
+          return;
         }
 
-        // QUALIFICATIONS
-        
-        if (
-          question.includes("qualification") ||
-          question.includes("qualifications") ||
-          question.includes("certificate") ||
-          question.includes("certification")
-        ) {
-          speak(novaAnswers["what qualifications does kelvin have"]);
+        // QUALIFICATIONS - NAVIGATION
+
+        const qualificationWords = [
+          "qualification",
+          "qualifications",
+          "certificate",
+          "certificates",
+          "certification",
+          "certifications"
+        ];
+
+        const wantsNavigation = navigationWords.some(word => question.includes(word));
+        const wantsQualifications = qualificationWords.some(word => question.includes(word));
+
+        if (wantsNavigation && wantsQualifications) {
+
+          speak("qualifications-navigation.mp3");
 
           document.getElementById("qualifications").scrollIntoView({
             behavior: "smooth"
-        });
+          });
 
-        return;
+          return;
+        }
+
+        // QUALIFICATIONS - INFORMATION
+
+        if (
+            question.includes("what qualification") ||
+            question.includes("what qualifications") ||
+            question.includes("tell me about kelvin's qualifications") ||
+            (question.includes("tell me about") &&
+              (
+                question.includes("qualification") ||
+                question.includes("qualifications") ||
+                question.includes("certificate") ||
+                question.includes("certification")
+              )
+          ) ||
+          question.includes("do you have qualifications") ||
+          question.includes("what certificates") ||
+          question.includes("what certifications")
+        ) {
+
+          speak("qualifications-info.mp3");
+
+          document.getElementById("qualifications").scrollIntoView({
+            behavior: "smooth"
+          });
+
+          return;
         }
 
         // PROJECTS
-        
-        if (
-          question.includes("project") ||
-          question.includes("projects") ||
-          question.includes("portfolio")
-        ) {
-          speak(novaAnswers["show me portfolio projects"]);
+
+        const projectWords = [
+          "project",
+          "projects",
+          "portfolio",
+          "website",
+          "websites",
+          "work",
+          "examples"
+        ];
+
+        const wantsProjectNavigation =
+          navigationWords.some(word => question.includes(word));
+
+        const wantsProjects =
+          projectWords.some(word => question.includes(word));
+
+        if (wantsProjectNavigation && wantsProjects) {
+
+          speak("projects.mp3");
 
           document.getElementById("projects").scrollIntoView({
             behavior: "smooth"
-        });
+          });
 
-        return;
+          return;
         }
 
         // CONTACT
@@ -1239,9 +1391,23 @@
           question.includes("contact") ||
           question.includes("email") ||
           question.includes("linkedin") ||
-          question.includes("reach")
+          question.includes("github") ||
+          question.includes("phone") ||
+          question.includes("telephone") ||
+          question.includes("reach") ||
+          question.includes("get hold of") ||
+          question.includes("get in touch") ||
+          question.includes("how can i contact kelvin") ||
+          question.includes("how do i contact kelvin") ||
+          question.includes("how can i reach kelvin") ||
+          question.includes("how do i reach kelvin") ||
+          question.includes("how can i get in touch") ||
+          question.includes("how do i get in touch") ||
+          question.includes("contact details") ||
+          question.includes("how can i hire kelvin") ||
+          question.includes("hire kelvin")
         ) {
-          speak(novaAnswers["how can i contact kelvin"]);
+          speak("contact.mp3");
 
           document.getElementById("contact").scrollIntoView({
             behavior: "smooth"
@@ -1253,10 +1419,22 @@
         // LOCATION
         
         if (
-          question.includes("where") &&
-          question.includes("located")
+          (question.includes("where") &&
+          (question.includes("located") ||
+          question.includes("based") ||
+          question.includes("live") ||
+          question.includes("from"))) ||
+          question.includes("where does kelvin live") ||
+          question.includes("where is kelvin") ||
+          question.includes("where is kelvin based") ||
+          question.includes("where are you based") ||
+          question.includes("where do you live") ||
+          question.includes("what country are you in") ||
+          question.includes("what city are you in") ||
+          question.includes("your location") ||
+          question.includes("current location")
         ) {
-          speak(novaAnswers["where is kelvin located"]);
+          speak("location.mp3");
           return;
         }
 
@@ -1264,17 +1442,26 @@
         
         if (
           question.includes("what are you") ||
-          question.includes("who are you")
+          question.includes("who are you") ||
+          question.includes("tell me about yourself") ||
+          question.includes("introduce yourself") ||
+          question.includes("what is nova") ||
+          question.includes("who is nova") ||
+          question.includes("are you an ai") ||
+          question.includes("are you artificial intelligence") ||
+          question.includes("what do you do") ||
+          question.includes("what is your purpose") ||
+          question.includes("why are you here") ||
+          question.includes("what can i ask you") ||
+          question.includes("how do you work")
         ) {
-          speak(novaAnswers["what are you"]);
+          speak("who-are-you.mp3");
           return;
         }
 
         // DEFAULT RESPONSE
         
-        speak(
-          "Sorry, I don't know the answer to that yet. Try asking me about Kelvin, his projects, qualifications, skills or contact information."
-        );
+        speak("default.mp3");
       }
     </script>
 
