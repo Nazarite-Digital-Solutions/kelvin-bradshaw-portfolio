@@ -1,0 +1,1282 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+    <title>Kelvin Bradshaw — Customer Service &amp; Web Development</title>
+    <meta name="description" content="Kelvin Bradshaw - Customer Service Professional, Web Developer and Digital Solutions Specialist. View my portfolio, projects, skills, qualifications, and contact information.">
+    <link rel="canonical" href="https://kelvin-bradshaw.vercel.app/">
+    
+    <meta name="robots" content="index, follow">
+    
+    <meta name="application-name" content="Kelvin Bradshaw's Portfolio Website">
+
+    <meta name="author" content="Nazarite Digital Solutions">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <style>
+      :root{
+        --gutter: clamp(1.5rem, 5vw, 5rem);
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+  
+      html { scroll-behavior: smooth; }
+  
+      body { font-family: 'Inter', Arial, sans-serif; color: #12201B; line-height: 1.6; overflow-x: hidden; }
+  
+      img { max-width: 100%; display:block; }
+  
+      a { color: inherit; text-decoration: none; }
+
+      /* ---------- RESPECT REDUCED MOTION ---------- */
+      
+      @media (prefers-reduced-motion: reduce){
+        html{ scroll-behavior:auto; }
+        
+        *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+      }
+
+/* ──────────────────────────────────────────────────── HEADER ────────────────────────────────────────────────────── */
+  
+      .nav {
+        position: fixed;
+        top: 0; 
+        left: 0; 
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: clamp(1rem, 2vh, 1.5rem) var(--gutter);
+        background: rgba(6, 15, 27, 0.0);
+        transition: background 0.4s ease, box-shadow 0.4s ease, padding 0.3s ease;
+      }
+        
+      .nav.is-scrolled {
+        box-shadow: 0 1px 0 black;
+        padding-top: clamp(0.75rem, 1.5vh, 1rem);
+        padding-bottom: clamp(0.75rem, 1.5vh, 1rem);
+        background: rgba(15, 15, 15, 0.45);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+      }
+  
+      .nav-mark {
+        font-family: 'IBM Plex Mono', 'Courier New', monospace;
+        font-size: clamp(0.9rem, 1.2vw, 1rem);
+        letter-spacing: 0.08em;
+        color: white;
+        border: 1px solid white;
+        border-radius: 50%;
+        width: 2.4rem;
+        height: 2.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+  
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(24rem, 90vw);
+        background: black;
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 2rem var(--gutter);
+        transform: translateX(100%);
+        transition: transform 0.35s ease;
+        list-style: none;
+      }
+        
+      .nav-links a {
+        font-family: 'IBM Plex Mono', 'Courier New', monospace;
+        font-size: 0.8rem;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: white;
+        position: relative;
+        padding-bottom: 0.25rem;
+      }
+      
+      .nav-links.is-open { transform: translateX(0); }
+  
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0; 
+        bottom: 0;
+        width: 0; 
+        height: 1px;
+        background: white;
+        transition: width 0.3s ease;
+      }
+  
+      @media (hover:hover) and (pointer:fine) {
+        .nav-links a:hover::after { width:100%; }
+          
+        .nav-links a:hover { color: white; }
+      }
+  
+      .nav-toggle {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+      }
+  
+      .nav-toggle span{
+        width: 22px; 
+        height: 2px; 
+        background: white;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+  
+      .nav-toggle.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  
+      .nav-toggle.is-open span:nth-child(2) { opacity: 0; }
+  
+      .nav-toggle.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ───────────────────────────────────────────────────── HERO ─────────────────────────────────────────────────────── */
+  
+      .hero {
+        min-height: 100svh;
+        min-height: 100dvh;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background: #060F1B;
+      }
+  
+      .hero-video {
+        position: absolute;
+        top: 50%; 
+        left: 50%;
+        min-width: 100%; 
+        min-height: 100%;
+        width: auto; 
+        height: auto;
+        transform: translate(-50%, -50%);
+        object-fit: cover;
+        z-index: 0;
+      }
+  
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(6,15,27,0.55) 0%, rgba(6,15,27,0.72) 55%, rgba(6,15,27,0.9) 100%);
+        z-index: 1;
+      }
+  
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 0 var(--gutter);
+        max-width: 44rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+  
+      .photo-circle {
+        width: clamp(5.5rem, 26vw, 8rem);
+        height: clamp(5.5rem, 26vw, 8rem);
+        border-radius: 50%;
+        border: 2px solid white;
+        outline: 1px solid white;
+        outline-offset: 6px;
+        overflow: hidden;
+        margin-bottom: 1.5rem;
+        background: #060F1B;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+  
+      .photo-circle picture,
+      .photo-circle img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .photo-circle img {
+        display: block;
+        object-fit: cover;
+      }
+  
+      .hero-name {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(1.6rem, 5vw, 3rem);
+        color: white;
+        letter-spacing: -0.01em;
+        margin-bottom: 0.5rem;
+      }
+  
+      .hero-tagline {
+        font-size: 0.95rem;
+        color: white;
+        max-width: 36rem;
+        line-height: 1.5;
+        margin-bottom: .75rem;
+      }
+
+      .hero-links {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: .75rem;
+        margin-top: 1.5rem;
+      }
+
+      .hero-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: .65rem 1.2rem;
+        border: 1px solid rgba(255,255,255,.35);
+        border-radius: 999px;
+        color: white;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: .78rem;
+        letter-spacing: .05em;
+        transition: background .3s ease,
+                    border-color .3s ease,
+                    transform .3s ease;
+      }
+
+      @media (hover:hover) and (pointer:fine) {
+        .hero-link:hover {
+          background: rgba(255,255,255,.12);
+          border-color: white;
+          transform: translateY(-2px);
+        }
+      }
+      
+/* ───────────────────────────────────────────────────── NOVA ─────────────────────────────────────────────────────── */
+      
+      .nova-divider {
+        width: min(420px,80%);
+        height: 1px;
+        background: rgba(255,255,255,.15);
+        margin: 1.1rem 0;
+      }
+
+      .nova-button {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        transition: transform .3s ease;
+      }
+      
+      @media (hover:hover) and (pointer:fine) {
+        .nova-button:hover {
+          transform: scale(1.03);
+        }
+      }
+
+      .nova-icon {
+        width: 58px;
+        height: 58px;
+        flex-shrink: 0;
+        border: 1px solid rgba(255,255,255,.35);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.4rem;
+        animation: pulseMic 2s infinite;
+      }
+
+      @keyframes pulseMic {
+        0% { box-shadow: 0 0 0 0 rgba(255,255,255,.35); }
+        70% { box-shadow: 0 0 0 8px rgba(255,255,255,0); }
+        100% { box-shadow:0 0 0 0 rgba(255,255,255,0); }
+      }
+      
+      .nova-icon.listening {
+        animation:none;
+        background:#fff;
+        color:#12201B;
+      }
+
+      .nova-text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        min-width: 0;
+      }
+
+      .nova-title {
+        font-family: 'Fraunces', serif;
+        font-size: 1rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .nova-prompt {
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: 0.75rem;
+        color: rgba(255,255,255,.75);
+        min-height: 1.3rem;
+        transition: opacity .3s ease;
+      }
+      
+      /* ---------- SECTION SHARED STYLES ---------- */
+      
+      section { 
+        position: relative; 
+        width: 100%; 
+        padding: 4rem; 
+        scroll-margin-top: 3rem; 
+      }
+  
+      .section--light { 
+        background: white; 
+        color: black; 
+      }
+  
+      .section--dark { 
+        background: #0A1B2E; 
+        color: white; 
+      }
+  
+      .section-inner {
+        max-width: 50rem;
+        margin: 0 auto;
+      }
+  
+      .section h2 {
+        font-family: 'Fraunces', Georgia, serif;
+        font-weight: 500;
+        font-size: clamp(1.9rem, 4.5vw, 2.85rem);
+        margin-bottom: clamp(1.25rem, 3vh, 1.75rem);
+        letter-spacing: -0.01em;
+      }
+  
+      .section p {
+        font-size: clamp(0.95rem, 1.3vw, 1.05rem);
+        max-width: 42rem;
+      }
+  
+      .section p + p { margin-top: 1rem; }
+  
+      .section--dark p { color: #E8E1D3; }
+      
+/* ─────────────────────────────────────────────────── PROJECTS ───────────────────────────────────────────────────── */
+      
+      #projects .section-inner { max-width:75rem; }
+
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .project-card {
+        display: block;
+        overflow: hidden;
+        border-radius: 0.75rem;
+        text-decoration: none;
+        box-shadow: 0 0.75rem 2rem rgba(0,0,0,.15);
+        transition: transform .3s ease,
+                    box-shadow .3s ease;
+      }
+      
+      @media (hover:hover) and (pointer:fine) {
+        .project-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 1rem 2.5rem rgba(0,0,0,.2);
+        }
+      }
+      
+      .project-card picture {
+        display: block;
+        height: 220px;
+        overflow: hidden;
+      }
+
+      .project-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .project-info {
+        background: white;
+        color: #12201B;
+        padding: 1.25rem;
+        text-align: center;
+      }
+
+      .project-info h3 {
+        font-family: 'Fraunces', serif;
+        font-weight: 500;
+        font-size: 1.2rem;
+      }
+      
+/* ──────────────────────────────────────────────── QUALIFICATIONS ────────────────────────────────────────────────── */
+
+      .timeline {
+        position: relative;
+        margin-top: 2.5rem;
+        padding-left: 2.5rem;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 12px;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #12201B;
+      }
+
+      .timeline-item {
+        position: relative;
+        margin-bottom: 2.75rem;
+      }
+
+      .timeline-item:last-child {
+        margin-bottom: 0;
+      }
+
+      .timeline-dot {
+        position: absolute;
+        left: -2.5rem;
+        top: 0.4rem;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background: #12201B;
+        border: 4px solid white;
+        box-shadow: 0 0 0 2px #12201B;
+      }
+
+      .timeline-item h4 {
+        font-family: 'Fraunces', serif;
+        font-weight: 500;
+        font-size: 1.25rem;
+        margin-bottom: .35rem;
+        line-height: 1.3;
+      }
+
+      .timeline-item p {
+        color: #666;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: .9rem;
+      }
+      
+/* ──────────────────────────────────────────────────── SKILLS ────────────────────────────────────────────────────── */
+      
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .skill {
+        font-size: 1rem;
+        background: white;
+        color: black;
+        padding: 0.7rem 1.2rem;
+        border-radius: 2rem;
+        box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.08);
+      }
+      
+/* ──────────────────────────────────────────────────── CONTACT ───────────────────────────────────────────────────── */
+ 
+      .contact-group {
+        margin-top: 2rem;
+      }
+
+      .contact-group h3 {
+        font-family: 'Fraunces', serif;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      .contact-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+      }
+
+      .contact-button {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: .9rem 1.5rem;
+        border: 1px solid #12201B;
+        border-radius: 999px;
+        background: white;
+        color: #12201B;
+        font-family: 'IBM Plex Mono', monospace;
+        font-size: .8rem;
+        transition: background .3s ease, color .3s ease, transform .3s ease;
+      }
+
+      @media (hover:hover) and (pointer:fine) {
+        .contact-button:hover {
+          background: #12201B;
+          color: white;
+          transform: translateY(-2px);
+        }
+      }
+
+/* ──────────────────────────────────────────────────── FOOTER ────────────────────────────────────────────────────── */
+  
+      .footer {
+        background: #0A1B2E;
+        color: white;
+        text-align: center;
+        padding: clamp(2rem, 5vh, 3rem) var(--gutter);
+        font-family: 'IBM Plex Mono', 'Courier New', monospace;
+        font-size: 0.75rem;
+        letter-spacing: 0.05em;
+      }
+
+/* ───────────────────────────────────────────────── MEDIA QUERIES ────────────────────────────────────────────────── */
+  
+      /* ---------- 900px ---------- */
+      
+      @media (max-width: 900px) {
+        .projects-grid { grid-template-columns: repeat(2,1fr); }
+      }
+      
+      /* ---------- 768px ---------- */
+      
+      @media (max-width: 768px) {    
+        .nav-links a { font-size: 0.95rem; }
+        
+        .nova-button {
+          flex-direction: column;
+          gap: 0.6rem;
+          text-align: center;
+        }
+
+        .nova-text {
+          align-items: center;
+          text-align: center;
+        }
+
+        .section-inner{ max-width: 100%; }
+      }
+      
+      /* ---------- 600px ---------- */
+      
+      @media (max-width: 600px) {
+        .projects-grid { grid-template-columns: 1fr; }
+      }
+
+      /* ---------- 430px ---------- */
+      
+      @media (max-width: 430px) {
+        :root { --gutter: 1.25rem; }
+        
+        .hero-content { transform: translateY(-1.5rem); }
+
+        .hero-tagline { margin-bottom: .6rem; }
+        
+        .hero-links {
+          gap: .6rem;
+          margin-top: 1rem;
+        }
+
+        .hero-link { padding: .55rem 1rem; }
+        
+        .nova-button { gap: 0.6rem; }
+
+        .section { padding: 4rem; }
+      }
+    </style>
+  </head>
+    
+<!-- ──────────────────────────────────────────────────── BODY ───────────────────────────────────────────────────── -->
+    
+  <body>
+
+<!-- ─────────────────────────────────────────────────── HEADER ──────────────────────────────────────────────────── -->
+    
+    <nav class="nav" id="siteNav">
+      <a href="#hero" class="nav-mark">KB</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Portfolio Projects</a></li>
+        <li><a href="#qualifications">Qualifications</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+<!-- ──────────────────────────────────────────────────── HERO ───────────────────────────────────────────────────── -->
+    
+    <section class="hero" id="hero">
+      
+       <video class="hero-video" autoplay muted loop playsinline poster="hero-image-background.webp" preload="metadata" aria-hidden="true" width="1920" height="1080">
+        <source src="hero-video-background.webm" type="video/webm">
+        <source src="hero-video-background.mp4" type="video/mp4">
+      </video>
+        
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+      <div class="photo-circle">
+        <picture>
+          <source srcset="kelvin-bradshaw-headshot.webp" type="image/webp">
+          <img src="kelvin-bradshaw-headshot.jpg" alt="Kelvin Bradshaw, Customer Service Professional and Web Developer" width="500" height="667">
+        </picture>
+      </div>
+      <h1 class="hero-name">Kelvin Bradshaw</h1>
+      <p class="hero-tagline">
+        Customer Service Professional, Web Developer and Digital Solutions Specialist helping 
+        businesses improve customer experiences and online presence.
+      </p>
+        
+      <div class="hero-links">
+
+        <a href="https://www.linkedin.com/in/kelvinbradshaw" target="_blank" rel="noopener noreferrer" class="hero-link">
+          LinkedIn
+        </a>
+
+        <a href="#contact" class="hero-link">
+          Download CV
+        </a>
+
+      </div>
+        
+      <div class="nova-divider"></div>
+
+        <button class="nova-button" id="novaButton" aria-label="Talk to NOVA">
+          <span class="nova-icon">🎤</span>
+
+          <span class="nova-text">
+            <span class="nova-title">Talk to NOVA</span>
+            <span class="nova-prompt" id="novaPrompt">Ask me who created me...</span>
+          </span>
+        </button>
+
+      <div class="nova-divider"></div>
+        
+      </div>
+    </section>
+
+<!-- ──────────────────────────────────────────────────── ABOUT ──────────────────────────────────────────────────── -->
+    
+    <section class="section section--light" id="about">
+      <div class="section-inner">
+        <h2>About Me</h2>
+        <p>
+          I am a customer service and administration professional with over 11 years of experience supporting customers 
+          across contact centre, technical support, and administrative environments in both the UK and South Africa. 
+          Alongside my customer service career, I have developed skills in front-end web development, creating 
+          responsive, user-friendly websites for small businesses and service providers. I enjoy combining strong 
+          communication skills with technology to help businesses improve their online presence and customer experience. 
+          Currently seeking remote Customer Service, Technical Support or Junior Front-End Web Developer 
+          opportunities in the UK
+        </p>
+      </div>
+    </section>
+
+<!-- ───────────────────────────────────────────── PORTFOLIO PROJECTS ────────────────────────────────────────────── -->
+    
+    <section class="section section--dark" id="projects">
+      <div class="section-inner">
+        <h2>Portfolio Projects</h2>
+        
+        <div class="projects-grid">
+
+          <a href="#" class="project-card">
+
+            <picture>
+              <source srcset="project-1.webp" type="image/webp">
+              <img src="project-1.jpg" alt="Project 1 website preview" width="1348" height="597">
+            </picture>
+
+            <div class="project-info">
+              <h3>Project 1</h3>
+            </div>
+
+          </a>
+
+          <a href="#" class="project-card">
+
+            <picture>
+              <source srcset="project-2.webp" type="image/webp">
+              <img src="project-2.jpg" alt="Project 2 website preview" width="1350" height="609">
+            </picture>
+
+            <div class="project-info">
+              <h3>Project 2</h3>
+            </div>
+
+          </a>
+
+          <a href="#" class="project-card">
+
+            <picture>
+              <source srcset="project-3.webp" type="image/webp">
+              <img src="project-3.jpg" alt="Project 3 website preview" width="1348" height="644">
+            </picture>
+
+            <div class="project-info">
+              <h3>Project 3</h3>
+            </div>
+
+          </a>
+
+        </div>
+       
+      </div>
+    </section>
+
+<!-- ─────────────────────────────────────── QUALIFICATIONS & CERTIFICATIONS ─────────────────────────────────────── -->
+    
+    <section class="section section--light" id="qualifications">
+      <div class="section-inner">
+
+        <h2>Qualifications & Certifications</h2>
+
+        <div class="timeline">
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h4>Bachelor of Technology in Horticulture</h4>
+            <p>2009</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h4>Level 1 Award in Contact Centre Operations</h4>
+            <p>2024</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h4>GDPR Certificate</h4>
+            <p>2024</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h4>Level 2 Diploma in Digital & IT Skills</h4>
+            <p>2024</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h4>Level 3 Customer Services Diploma</h4>
+            <p>2024</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h4>Level 2 HTML5 Certificate</h4>
+            <p>2026</p>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <h4>Level 1 CSS Certificate</h4>
+            <p>2026</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+<!-- ─────────────────────────────────────────────────── SKILLS ──────────────────────────────────────────────────── -->
+    
+    <section class="section section--dark" id="skills">
+      <div class="section-inner">
+        <h2>Skills</h2>
+          <div class="skills">
+          <div class="skill">Customer Service</div>
+          <div class="skill">Administration</div>
+          <div class="skill">CRM Systems</div>
+          <div class="skill">Technical Support</div>
+          <div class="skill">HTML</div>
+          <div class="skill">CSS</div>
+          <div class="skill">JavaScript</div>
+          <div class="skill">Responsive Design</div>
+          <div class="skill">GitHub</div>
+          <div class="skill">Cloudflare</div>
+          <div class="skill">Vercel</div>
+        </div>
+      </div>
+    </section>
+
+<!-- ─────────────────────────────────────────────────── CONTACT ─────────────────────────────────────────────────── -->
+    
+    <section class="section section--light" id="contact">
+      <div class="section-inner">
+
+        <h2>Let's Connect</h2>
+
+        <p class="location">📍 Durban, South Africa</p>
+        <p class="email">
+          ✉️
+          <a href="mailto:kelvinrbradshaw@gmail.com">kelvinrbradshaw@gmail.com</a>
+        </p>
+
+        <div class="contact-group">
+
+        <h3>Connect</h3>
+
+          <div class="contact-buttons">
+
+            <a href="https://www.linkedin.com/in/kelvinbradshaw" target="_blank" rel="noopener noreferrer" class="contact-button">
+              LinkedIn
+            </a>
+
+            <a href="https://github.com/Nazarite-Digital-Solutions" target="_blank" rel="noopener noreferrer" class="contact-button">
+              GitHub
+            </a>
+
+          </div>
+
+        </div>
+
+        <div class="contact-group">
+
+          <h3>Download CVs</h3>
+
+          <div class="contact-buttons">
+
+            <a href="Kelvin-Bradshaw-Front-End-Developer-CV.pdf" download class="contact-button">Front-End Developer CV</a>
+
+            <a href="Kelvin-Bradshaw-Customer-Service-Advisor-CV.pdf" download class="contact-button">Customer Service CV</a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+<!-- ─────────────────────────────────────────────────── FOOTER ──────────────────────────────────────────────────── -->
+    
+    <footer class="footer">
+      <p>&copy; <span id="year"></span> Kelvin Bradshaw. All rights reserved.</p>
+    </footer>
+    
+<!-- ─────────────────────────────────────────────────── SCRIPT ──────────────────────────────────────────────────── -->
+
+    <script>
+      // NAV BACKGROUND ON SCROLL
+      
+      const nav = document.getElementById('siteNav');
+      window.addEventListener('scroll', () => {
+        nav.classList.toggle('is-scrolled', window.scrollY > 40);
+      });
+
+      // NAV TOGGLE
+      
+      const navToggle = document.getElementById('navToggle');
+      const navLinks = document.getElementById('navLinks');
+      navToggle.addEventListener('click', () => {
+        navToggle.classList.toggle('is-open');
+        navLinks.classList.toggle('is-open');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navToggle.classList.remove('is-open');
+          navLinks.classList.remove('is-open');
+        });
+      });
+
+      // FOOTER YEAR
+      
+      document.getElementById('year').textContent = new Date().getFullYear();
+      
+      // NOVA
+      
+      const prompts = [
+        "Who created you?",
+        "Tell me about Kelvin.",
+        "Show me the projects.",
+        "Show me the qualifications.",
+        "What are Kelvin's skills?",
+        "How can I contact Kelvin?"
+      ];
+
+      const promptElement = document.getElementById("novaPrompt");
+      let currentPrompt = 0;
+
+      function rotatePrompt() {
+      promptElement.style.opacity = "0";
+        setTimeout(() => {
+          currentPrompt = (currentPrompt + 1) % prompts.length;
+          promptElement.textContent = prompts[currentPrompt];
+          promptElement.style.opacity = "1";
+        }, 300);
+      }
+
+      setInterval(rotatePrompt, 3500);
+      
+      // SPEECH RECOGNITION
+
+      const novaButton = document.getElementById("novaButton");
+      const novaIcon = document.querySelector(".nova-icon");
+
+      const SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      // CHECK BROWSER SUPPORT
+      
+      if (!SpeechRecognition) {
+        promptElement.textContent = "Voice isn't supported.";
+        novaButton.disabled = true;
+        novaButton.style.opacity = "0.5";
+      } else {
+
+      const recognition = new SpeechRecognition();
+
+      recognition.lang = "en-GB";
+      recognition.continuous = false;
+      recognition.interimResults = false;
+      recognition.maxAlternatives = 1;
+
+      // START LISTENING
+        
+      novaButton.addEventListener("click", () => {
+
+        speechSynthesis.cancel();
+
+        novaIcon.classList.add("listening");
+        promptElement.textContent = "Listening...";
+
+        try {
+          recognition.start();
+        } catch (err) {
+          recognition.stop();
+          recognition.start();
+        }
+      });
+
+      // USER FINISHED SPEAKING
+        
+      recognition.onresult = (event) => {
+        const question = event.results[0][0].transcript.trim();
+        console.log("User said:", question);
+        promptElement.textContent = question;
+        answerQuestion(question);
+      };
+
+      // RECOGNITION FINISHED
+      
+      recognition.onend = () => {
+
+        novaIcon.classList.remove("listening");
+
+        setTimeout(() => {
+          promptElement.textContent = prompts[currentPrompt];
+        }, 1500);
+      };
+
+      // HANDLE ERRORS
+      
+      recognition.onerror = (event) => {
+
+      novaIcon.classList.remove("listening");
+
+      switch (event.error) {
+
+        case "not-allowed":
+          promptElement.textContent = "Please allow microphone access.";
+          break;
+
+        case "no-speech":
+          promptElement.textContent = "I didn't hear anything.";
+          break;
+
+        case "network":
+          promptElement.textContent = "Network error.";
+          break;
+
+        case "audio-capture":
+          promptElement.textContent = "No microphone found.";
+          break;
+
+        default:
+          promptElement.textContent = "Voice recognition unavailable.";
+      }
+
+        setTimeout(() => {
+          promptElement.textContent = prompts[currentPrompt];
+        }, 2500);
+      };
+      }
+      
+      // TEXT TO SPEECH
+
+      let availableVoices = [];
+
+      // LOAD AVAILABLE VOICES
+      
+      function loadVoices() {
+        availableVoices = speechSynthesis.getVoices();
+      }
+
+      loadVoices();
+
+      if (speechSynthesis.onvoiceschanged !== undefined) {
+        speechSynthesis.onvoiceschanged = loadVoices;
+      }
+
+      function speak(text) {
+
+      // STOP ANY SPEECH ALREADY PLAYING
+      
+      speechSynthesis.cancel();
+
+      const utterance = new SpeechSynthesisUtterance(text);
+
+        // BRITISH FEMALE VOICE
+      
+        const preferredVoice =
+        availableVoices.find(v => v.name.includes("Libby")) ||
+        availableVoices.find(v => v.name.includes("Hazel")) ||
+        availableVoices.find(v => v.name.includes("Sonia")) ||
+        availableVoices.find(v => v.name.includes("Google UK English Female")) ||
+        availableVoices.find(v => v.lang === "en-GB") ||
+        availableVoices.find(v => v.lang.startsWith("en"));
+
+      if (preferredVoice) {
+        utterance.voice = preferredVoice;
+      }
+
+      utterance.lang = "en-GB";
+      utterance.rate = 1;
+      utterance.pitch = 1;
+      utterance.volume = 1;
+
+      speechSynthesis.speak(utterance);
+      }
+ 
+      // NOVA ANSWERS
+
+      const novaAnswers = {
+
+        "who created you":
+          "I was created by Kelvin Bradshaw as part of his interactive portfolio. I demonstrate front-end development, JavaScript, voice recognition, speech synthesis and AI integration.",
+
+        "tell me about kelvin":
+          "Kelvin Bradshaw is a Customer Service Professional with over eleven years of experience supporting customers in the United Kingdom and South Africa. Alongside his customer service career, he designs and develops modern, responsive websites using HTML, CSS and JavaScript.",
+
+        "what experience does kelvin have":
+          "Kelvin has over eleven years of experience in customer service, technical support, administration and CRM systems. He has worked in contact centres, administrative roles and web development projects.",
+
+        "what skills does kelvin have":
+          "Kelvin's skills include Customer Service, Technical Support, Administration, HTML, CSS, JavaScript, Responsive Web Design, GitHub, Cloudflare and Vercel.",
+
+        "what technologies does kelvin use":
+          "Kelvin specialises in HTML, CSS and JavaScript. He also works with GitHub, Cloudflare, Vercel, responsive web design, search engine optimisation and website performance optimisation.",
+
+        "what qualifications does kelvin have":
+          "Kelvin has completed qualifications in Customer Service, HTML, CSS, Digital and IT Skills, GDPR, Contact Centre Operations and continues expanding his JavaScript knowledge through real-world projects.",
+
+        "show me portfolio projects":
+          "Certainly. I'll take you to Kelvin's portfolio projects.",
+
+        "show me qualifications":
+          "Certainly. Here's Kelvin's qualifications section.",
+
+        "show me skills":
+          "Certainly. Here's Kelvin's skills section.",
+
+        "how can i contact kelvin":
+          "You can contact Kelvin using the contact section below or connect with him on LinkedIn.",
+
+        "where is kelvin located":
+          "Kelvin is currently based in Durban, South Africa, and is seeking remote opportunities in the United Kingdom.",
+
+        "what are you":
+          "I'm NOVA, Kelvin's voice assistant. You can ask me about Kelvin, his projects, qualifications, skills or contact information."
+      };
+      
+      // ANSWER QUESTIONS
+
+      function answerQuestion(question) {
+
+        question = question.toLowerCase().trim();
+
+        // ABOUT KELVIN
+        
+        if (
+          question.includes("about kelvin") ||
+          question.includes("who is kelvin") ||
+          question.includes("tell me about kelvin")
+        ) {
+          speak(novaAnswers["tell me about kelvin"]);
+          return;
+        }
+
+        // WHO CREATED YOU
+        
+        if (
+          question.includes("who created you") ||
+          question.includes("who made you") ||
+          question.includes("who built you")
+        ) {
+          speak(novaAnswers["who created you"]);
+          return;
+        }
+
+        // EXPERIENCE
+        
+        if (
+          question.includes("experience") ||
+          question.includes("work experience") ||
+          question.includes("career")
+        ) {
+          speak(novaAnswers["what experience does kelvin have"]);
+          return;
+        }
+
+        // SKILLS
+        
+        if (
+          question.includes("skills") ||
+          question.includes("skill")
+        ) {
+          speak(novaAnswers["what skills does kelvin have"]);
+
+          document.getElementById("skills").scrollIntoView({
+            behavior: "smooth"
+        });
+
+          return;
+        }
+
+        // TECHNOLOGIES
+        
+        if (
+          question.includes("technology") ||
+          question.includes("technologies") ||
+          question.includes("html") ||
+          question.includes("css") ||
+          question.includes("javascript")
+        ) {
+          speak(novaAnswers["what technologies does kelvin use"]);
+
+          document.getElementById("skills").scrollIntoView({
+            behavior: "smooth"
+        });
+
+        return;
+        }
+
+        // QUALIFICATIONS
+        
+        if (
+          question.includes("qualification") ||
+          question.includes("qualifications") ||
+          question.includes("certificate") ||
+          question.includes("certification")
+        ) {
+          speak(novaAnswers["what qualifications does kelvin have"]);
+
+          document.getElementById("qualifications").scrollIntoView({
+            behavior: "smooth"
+        });
+
+        return;
+        }
+
+        // PROJECTS
+        
+        if (
+          question.includes("project") ||
+          question.includes("projects") ||
+          question.includes("portfolio")
+        ) {
+          speak(novaAnswers["show me portfolio projects"]);
+
+          document.getElementById("projects").scrollIntoView({
+            behavior: "smooth"
+        });
+
+        return;
+        }
+
+        // CONTACT
+        
+        if (
+          question.includes("contact") ||
+          question.includes("email") ||
+          question.includes("linkedin") ||
+          question.includes("reach")
+        ) {
+          speak(novaAnswers["how can i contact kelvin"]);
+
+          document.getElementById("contact").scrollIntoView({
+            behavior: "smooth"
+        });
+
+        return;
+        }
+
+        // LOCATION
+        
+        if (
+          question.includes("where") &&
+          question.includes("located")
+        ) {
+          speak(novaAnswers["where is kelvin located"]);
+          return;
+        }
+
+        // WHAT ARE YOU
+        
+        if (
+          question.includes("what are you") ||
+          question.includes("who are you")
+        ) {
+          speak(novaAnswers["what are you"]);
+          return;
+        }
+
+        // DEFAULT RESPONSE
+        
+        speak(
+          "Sorry, I don't know the answer to that yet. Try asking me about Kelvin, his projects, qualifications, skills or contact information."
+        );
+      }
+    </script>
+
+  </body>
+</html>
