@@ -1111,47 +1111,6 @@
         }, 1800);
 
       });
- 
-      // NOVA ANSWERS
-
-      const novaAnswers = {
-
-        "who created you":
-          "I was created by Kelvin Bradshaw as part of his personal portfolio. Kelvin developed me using HTML, CSS and JavaScript, integrating voice recognition with custom-recorded responses to showcase his front-end development skills in a practical and interactive way. Feel free to ask me about his projects, qualifications or experience.",
-
-        "tell me about kelvin":
-          "Kelvin Bradshaw is a Customer Service Professional with over eleven years of experience supporting customers in the United Kingdom and South Africa. Alongside his customer service career, he designs and develops modern, responsive websites using HTML, CSS and JavaScript.",
-
-        "what experience does kelvin have":
-          "Kelvin has more than eleven years of professional experience across customer service, technical support and administration in both the United Kingdom and South Africa. He has worked in high-volume contact centres, managed customer enquiries using CRM systems, and more recently expanded into front-end web development, creating responsive websites with HTML, CSS and JavaScript.",
-
-        "what skills does kelvin have":
-          "Kelvin's skills include Customer Service, Technical Support, Administration, HTML, CSS, JavaScript, Responsive Web Design, GitHub, Cloudflare and Vercel.",
-
-        "what technologies does kelvin use":
-          "Kelvin specialises in HTML, CSS and JavaScript. He also works with GitHub, Cloudflare, Vercel, responsive web design, search engine optimisation and website performance optimisation.",
-
-        "what qualifications does kelvin have":
-          "Kelvin has completed qualifications in Customer Service, HTML, CSS, Digital and IT Skills, GDPR, Contact Centre Operations and continues expanding his JavaScript knowledge through real-world projects.",
-
-        "show me portfolio projects":
-          "Certainly. I'll take you to Kelvin's portfolio projects.",
-
-        "show me qualifications":
-          "Certainly. Here's Kelvin's qualifications section.",
-
-        "show me skills":
-          "Certainly. Here's Kelvin's skills section.",
-
-        "how can i contact kelvin":
-          "You can contact Kelvin by email using the contact section below. You can also connect with him on LinkedIn, explore his GitHub projects, or download his Customer Service and Front-End Developer CVs. Thank you for visiting his portfolio.",
-
-        "where is kelvin located":
-          "Kelvin is currently based in Durban, South Africa, and is seeking remote opportunities in the United Kingdom.",
-
-        "what are you":
-          "Hello, I'm NOVA, Kelvin Bradshaw's interactive portfolio assistant. I'm here to answer questions about Kelvin's experience, skills, qualifications, projects and contact information. Simply ask me a question, and I'll help you learn more about his background and the work he has created."
-      };
       
       // ANSWER QUESTIONS
       
@@ -1237,12 +1196,34 @@
           
           return;
         }
+        
+        // SKILLS - NAVIGATION
 
-        // SKILLS
+        const skillWords = [
+          "skill",
+          "skills"
+        ];
+
+        const wantsSkills =
+          skillWords.some(word => question.includes(word));
+
+        const wantsSkillNavigation =
+          navigationWords.some(word => question.includes(word));
+
+        if (wantsSkillNavigation && wantsSkills) {
+
+          speak("skills-navigation.mp3");
+
+          document.getElementById("skills").scrollIntoView({
+            behavior: "smooth"
+          });
+
+          return;
+        }
+
+        // SKILLS - INFORMATION
         
         if (
-          question.includes("skills") ||
-          question.includes("skill") ||
           question.includes("what can you do") ||
           question.includes("what can kelvin do") ||
           question.includes("what are kelvin's skills") ||
@@ -1384,19 +1365,40 @@
 
           return;
         }
+        
+        // CONTACT - NAVIGATION
 
-        // CONTACT
+        const contactWords = [
+          "contact",
+          "email",
+          "linkedin",
+          "github",
+          "cv",
+          "cvs",
+          "resume",
+          "download"
+        ];
+
+        const wantsContact =
+          contactWords.some(word => question.includes(word));
+
+        const wantsContactNavigation =
+          navigationWords.some(word => question.includes(word));
+
+        if (wantsContactNavigation && wantsContact) {
+
+          speak("contact-navigation.mp3");
+
+          document.getElementById("contact").scrollIntoView({
+            behavior: "smooth"
+          });
+
+          return;
+        }
+
+        // CONTACT - INFORMATION
         
         if (
-          question.includes("contact") ||
-          question.includes("email") ||
-          question.includes("linkedin") ||
-          question.includes("github") ||
-          question.includes("phone") ||
-          question.includes("telephone") ||
-          question.includes("reach") ||
-          question.includes("get hold of") ||
-          question.includes("get in touch") ||
           question.includes("how can i contact kelvin") ||
           question.includes("how do i contact kelvin") ||
           question.includes("how can i reach kelvin") ||
@@ -1405,7 +1407,11 @@
           question.includes("how do i get in touch") ||
           question.includes("contact details") ||
           question.includes("how can i hire kelvin") ||
-          question.includes("hire kelvin")
+          question.includes("hire kelvin") ||
+          question.includes("what is kelvin's email") ||
+          question.includes("what's kelvin's email") ||
+          question.includes("what is your email") ||
+          question.includes("what's your email")
         ) {
           speak("contact.mp3");
 
