@@ -398,11 +398,12 @@
       
 /* ─────────────────────────────────────────────────── PROJECTS ───────────────────────────────────────────────────── */
       
-      #projects .section-inner { max-width:75rem; }
+      #projects .section-inner { max-width: 85rem; }
 
       .projects-grid {
         display: grid;
-        grid-template-columns: repeat(3,1fr);
+        grid-template-columns: repeat(auto-fit, minmax(320px, 420px));
+        justify-content: center;
         gap: 2rem;
         margin-top: 2rem;
       }
@@ -576,12 +577,6 @@
 
 /* ───────────────────────────────────────────────── MEDIA QUERIES ────────────────────────────────────────────────── */
   
-      /* ---------- 900px ---------- */
-      
-      @media (max-width: 900px) {
-        .projects-grid { grid-template-columns: repeat(2,1fr); }
-      }
-      
       /* ---------- 768px ---------- */
       
       @media (max-width: 768px) {    
@@ -599,12 +594,6 @@
         }
 
         .section-inner{ max-width: 100%; }
-      }
-      
-      /* ---------- 600px ---------- */
-      
-      @media (max-width: 600px) {
-        .projects-grid { grid-template-columns: 1fr; }
       }
 
       /* ---------- 430px ---------- */
@@ -640,7 +629,7 @@
       <a href="#hero" class="nav-mark">KB</a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
-        <li><a href="#projects">Portfolio Projects</a></li>
+        <li><a href="#projects">Featured Projects</a></li>
         <li><a href="#qualifications">Qualifications</a></li>
         <li><a href="#skills">Skills</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -723,7 +712,7 @@
     
     <section class="section section--dark" id="projects">
       <div class="section-inner">
-        <h2>Portfolio Projects</h2>
+        <h2>Featured Web Projects</h2>
         
         <div class="projects-grid">
 
@@ -731,11 +720,11 @@
 
             <picture>
               <source srcset="project-1.webp" type="image/webp">
-              <img src="project-1.jpg" alt="Project 1 website preview" loading="lazy" decoding="async" width="1348" height="597">
+              <img src="project-1.jpg" alt="Aurelia Estates real estate website demo designed and developed by Kelvin Bradshaw" loading="lazy" decoding="async" width="1348" height="597">
             </picture>
 
             <div class="project-info">
-              <h3>Real Estate Demo</h3>
+              <h3>Aurelia Estate Demo</h3>
             </div>
 
           </a>
@@ -744,11 +733,11 @@
 
             <picture>
               <source srcset="project-2.webp" type="image/webp">
-              <img src="project-2.jpg" alt="Project 2 website preview" loading="lazy" decoding="async" width="1350" height="609">
+              <img src="project-2.jpg" alt="XYZ Springs manufacturing company website demo designed and developed by Kelvin Bradshaw" loading="lazy" decoding="async" width="1350" height="609">
             </picture>
 
             <div class="project-info">
-              <h3>XYZ Springs Demo</h3>
+              <h3>XYZ Springs (Demo)</h3>
             </div>
 
           </a>
@@ -757,11 +746,24 @@
 
             <picture>
               <source srcset="project-3.webp" type="image/webp">
-              <img src="project-3.jpg" alt="Project 3 website preview" loading="lazy" decoding="async" width="1348" height="644">
+              <img src="project-3.jpg" alt="Heartful Hound live pet behaviour and dog training website designed and developed by Kelvin Bradshaw" loading="lazy" decoding="async" width="1348" height="644">
             </picture>
 
             <div class="project-info">
               <h3>Heartful Hound</h3>
+            </div>
+
+          </a>
+          
+          <a href="https://nazaritedigitalsolutions.com/" class="project-card">
+
+            <picture>
+              <source srcset="project-4.webp" type="image/webp">
+              <img src="project-4.jpg" alt="Nazarite Digital Solutions official business website designed and developed by Kelvin Bradshaw" loading="lazy" decoding="async" width="1344" height="634">
+            </picture>
+
+            <div class="project-info">
+              <h3>Nazarite Digital Solutions</h3>
             </div>
 
           </a>
@@ -1342,11 +1344,15 @@
         const projectWords = [
           "project",
           "projects",
+          "featured",
           "portfolio",
           "website",
           "websites",
+          "web",
           "work",
-          "examples"
+          "examples",
+          "demo",
+          "demos"
         ];
 
         const wantsProjectNavigation =
