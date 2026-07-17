@@ -971,10 +971,11 @@
       // NOVA
       
       const prompts = [
-        "Who created you?",
+        "Why should we hire Kelvin?",
         "Tell me about Kelvin.",
+        "What experience does Kelvin have?",
         "Show me the projects.",
-        "Show me the qualifications.",
+        "What qualifications does Kelvin have?",
         "What are Kelvin's skills?",
         "How can I contact Kelvin?"
       ];
@@ -1370,6 +1371,26 @@
             behavior: "smooth"
           });
 
+          return;
+        }
+        
+        // WHY SHOULD WE HIRE YOU
+
+        if (
+          question.includes("why should we hire you") ||
+          question.includes("why should i hire you") ||
+          question.includes("why hire you") ||
+          question.includes("why would we hire you") ||
+          question.includes("why would i hire you") ||
+          question.includes("why should our company hire you") ||
+          question.includes("what makes you the right candidate") ||
+          question.includes("what makes you a good candidate") ||
+          question.includes("why are you the best candidate") ||
+          question.includes("what makes you different") ||
+          question.includes("why should we choose you") ||
+          question.includes("why should we employ you")
+        ) {
+          speak("why-hire-me.mp3");
           return;
         }
         
